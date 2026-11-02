@@ -23,7 +23,7 @@ node scripts/build.mjs
 python3 -m http.server 8080 --directory dist
 ```
 
-A local build shows a placeholder instead of the phone number, and uses `Maksim_Kirillov_CV_terminal.pdf` from the project root if it is there.
+A local build shows a placeholder instead of the phone number, and uses `Maksim Kirillov CV DevOps SRE.pdf` from the project root if it is there.
 
 New PDF:
 

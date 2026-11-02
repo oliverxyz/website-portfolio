@@ -21,7 +21,7 @@ const fail = (message) => {
 };
 
 const phone = process.env.PHONE?.trim() || "";
-const cvPdf = process.env.CV_PDF || join(root, "Maksim_Kirillov_CV_terminal.pdf");
+const cvPdf = process.env.CV_PDF || join(root, "Maksim Kirillov CV DevOps SRE.pdf");
 const goatcounter = process.env.GOATCOUNTER_CODE?.trim() || "";
 
 if (phone && !/^\+[0-9 ]{7,20}$/.test(phone)) fail("PHONE must look like +00 000 000 000");
