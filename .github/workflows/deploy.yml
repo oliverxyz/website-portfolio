@@ -1,0 +1,67 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "scripts/**"
+      - "firebase.json"
+      - ".github/workflows/deploy.yml"
+  # Run by hand after replacing the phone number or the PDF.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          workload_identity_provider: projects/1082182370480/locations/global/workloadIdentityPools/github/providers/github
+          service_account: github-deployer@resume-website-513516.iam.gserviceaccount.com
+
+      - uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3.0.1
+
+      - name: Fetch private data
+        run: |
+          phone="$(gcloud secrets versions access latest --secret resume-phone --project resume-website-513516)"
+          echo "::add-mask::$phone"
+          echo "PHONE=$phone" >> "$GITHUB_ENV"
+          gcloud storage cp gs://resume-website-513516-private/cv.pdf "$RUNNER_TEMP/cv.pdf"
+          echo "CV_PDF=$RUNNER_TEMP/cv.pdf" >> "$GITHUB_ENV"
+
+      - name: Build
+        run: node scripts/build.mjs --release
+        env:
+          GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
+
+      - name: Deploy to Firebase Hosting
+        run: npx --yes firebase-tools@15.34.2 deploy --only hosting --project resume-website-513516 --non-interactive
+
+      - name: Check the live site
+        run: |
+          url=https://resume-website-513516.web.app
+          html="$(curl --fail --silent --show-error "$url/")"
+          echo "$html" | grep -q "Maksim Kirillov"
+          if echo "$html" | grep -q -E "PHONE NOT SET|__PHONE_"; then
+            echo "A phone placeholder reached the live site" >&2
+            exit 1
+          fi
+          curl --fail --silent --show-error --output /dev/null "$url/Maksim_Kirillov_CV.pdf"
