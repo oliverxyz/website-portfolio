@@ -73,7 +73,7 @@ img, svg { display: block; }
 @keyframes blink { to { visibility: hidden; } }
 
 .hero { position: relative; overflow: hidden; border-bottom: 1px dashed var(--line); }
-.hero__chevrons { position: absolute; inset: 0 0 0 auto; height: 100%; width: 24rem; }
+.hero__chevrons { position: absolute; top: 0; right: 0; height: 100%; width: auto; aspect-ratio: 280 / 400; }
 .hero__grid {
   position: relative;
   display: grid; grid-template-columns: minmax(0, 1fr) 15rem; align-items: center;
