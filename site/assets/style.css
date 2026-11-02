@@ -161,6 +161,9 @@ h3 { font-size: 1.1875rem; font-weight: 700; line-height: 1.35; }
 .skills dt { color: var(--blue); font-weight: 700; }
 .skills dd { word-spacing: 0.5em; }
 
+.about { max-width: 46rem; font-size: 0.875rem; }
+.about + .about { margin-top: 0.75rem; }
+
 .footer {
   margin-top: 3rem; padding-block: 1.25rem 2rem;
   border-top: 1px dashed var(--line); color: var(--muted); font-size: 0.8125rem;
