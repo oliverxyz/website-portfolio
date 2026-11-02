@@ -75,9 +75,10 @@ img, svg { display: block; }
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 0.25rem 1.5rem; padding-block: 0.6rem;
 }
-.bar__brand { color: var(--muted); text-decoration: none; }
+.bar__brand { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+.bar__brand:hover { color: var(--accent); }
 .bar nav { display: flex; flex-wrap: wrap; gap: 0 1rem; font-size: 0.8125rem; }
-.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
 .bar nav a:hover { color: var(--accent); }
 .cursor {
   display: inline-block; width: 0.55em; height: 1em; margin-left: 0.3em;
@@ -190,5 +191,5 @@ h3 { font-size: 1.1875rem; font-weight: 700; line-height: 1.35; }
   html { scroll-behavior: auto; }
   .cursor { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
-  .btn { transition: none; }
+  .btn, .bar__brand, .bar nav a { transition: none; }
 }
