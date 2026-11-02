@@ -34,7 +34,7 @@ cpSync(join(root, "site"), dist, { recursive: true });
 
 const digits = phone.replace(/\D/g, "");
 const analytics = goatcounter
-  ? `<script data-goatcounter="https://${goatcounter}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>`
+  ? `<script data-goatcounter="https://${goatcounter}.goatcounter.com/count" async src="/assets/count.js"></script>`
   : "";
 
 const indexPath = join(dist, "index.html");

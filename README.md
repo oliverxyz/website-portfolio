@@ -85,7 +85,7 @@ About 0 EUR a month at low traffic. No resource here has a fixed monthly fee.
 
 A budget alert emails the billing admins at 50%, 90% and 100% of 30 EUR. It does not stop spending.
 
-Analytics use the free hosted GoatCounter, which works without cookies. The code is in the `GOATCOUNTER_CODE` repository variable.
+Analytics use the free hosted GoatCounter, which works without cookies. The code is in the `GOATCOUNTER_CODE` repository variable. `site/assets/count.js` is a copy of `https://gc.zgo.at/count.js`, so it does not update by itself. To keep your own visits out of the numbers, open the site once with `#toggle-goatcounter` at the end of the address.
 
 ## Remove everything
 

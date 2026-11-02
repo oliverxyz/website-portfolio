@@ -9,7 +9,7 @@
         "headers": [
           {
             "key": "Content-Security-Policy",
-            "value": "default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' https://*.goatcounter.com; connect-src https://*.goatcounter.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+            "value": "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://*.goatcounter.com; connect-src https://*.goatcounter.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
           },
           { "key": "X-Content-Type-Options", "value": "nosniff" },
           { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
