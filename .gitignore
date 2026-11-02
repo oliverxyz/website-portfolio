@@ -1,0 +1,33 @@
+# Source files with personal data: the PDF contains the phone number
+/*.pdf
+/*.jpg
+*:Zone.Identifier
+*.pdf
+
+# Build output
+dist/
+
+# Secrets and local settings
+.env
+.env.*
+*.key
+*-credentials.json
+credentials.json
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+tfplan
+*.tfplan
+
+# Firebase
+.firebase/
+firebase-debug.log
