@@ -49,6 +49,13 @@ resource "google_project_iam_member" "hosting_admin" {
   member  = google_service_account.deployer.member
 }
 
+# firebase-tools checks that the Hosting API is enabled before it deploys.
+resource "google_project_iam_member" "service_usage_viewer" {
+  project = var.project_id
+  role    = "roles/serviceusage.serviceUsageViewer"
+  member  = google_service_account.deployer.member
+}
+
 resource "google_secret_manager_secret" "phone" {
   project   = var.project_id
   secret_id = "resume-phone"
